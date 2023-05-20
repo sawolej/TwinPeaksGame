@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>pics/end.png</file>
+        <file>pics/redStone.png</file>
+        <file>pics/welcomRoom.png</file>
+        <file>level2.qml</file>
+        <file>pics/darkness.png</file>
+        <file>pics/tlo2.png</file>
+        <file>pics/goldBall.png</file>
+        <file>pics/greenBall.png</file>
+        <file>pics/redBall.png</file>
+        <file>Popups.qml</file>
+        <file>pics/gum.png</file>
+        <file>Owls.qml</file>
+        <file>pics/owl1.png</file>
+        <file>pics/owl2.png</file>
+        <file>pics/owl3.png</file>
+        <file>pics/win.png</file>
+        <file>pics/mainmenu.png</file>
+        <file>pics/daleBack.png</file>
+        <file>pics/daleCoffeeFront.png</file>
+        <file>pics/daleCoffeeLeft.png</file>
+        <file>pics/daleCoffeeRight.png</file>
+        <file>pics/daleFront.png</file>
+        <file>pics/daleGunLeft.png</file>
+        <file>pics/daleGunRight.png</file>
+        <file>pics/daleLeft.png</file>
+        <file>pics/daleRight.png</file>
+        <file>pics/kurtyna.png</file>
+        <file>pics/tptlo.mp3</file>
+    </qresource>
+</RCC>
