@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import "."
-import QtMultimedia 5.15
+import QtMultimedia 6.6
 
 
 /*
@@ -24,19 +24,18 @@ import QtMultimedia 5.15
   buttons in ending screens
   add sound
   */
+
 Window {
     id: window
     visible: true
     width: 800
     height: 600
     title: "tp"
-//    Audio {
-//        id: backgroundMusic
-//        source: "qrc:/pics/tptlo.mp3" // replace this with your actual file path
-//        loops: Audio.Infinite
-//        volume: 0.5 // adjust volume as needed (0.0 to 1.0)
-//        autoPlay: true
-//    }
+    MediaPlayer {
+            audioOutput: AudioOutput {}
+            source: "qrc:/pics/tptlo.mp3"
+            Component.onCompleted: { play() }
+   }
 
 //================================================ init ======================================================
     property int playerX: 600
@@ -136,13 +135,13 @@ Window {
             popups.gameOverDialog.visible = true;
             owls.animatedOwl.visible = false;
             player.visible = false;
-            levelLoader.sourceComponent = Qt.createComponent("end.qml");
+            levelLoader.sourceComponent = null
         }else if(s==="gold"){
             console.log("gold")
             popups.winDialog.visible = true;
             owls.animatedOwl.visible = false;
             player.visible = false;
-            levelLoader.sourceComponent = Qt.createComponent("end.qml");
+           levelLoader.sourceComponent = null
             }
     }
 
@@ -225,9 +224,6 @@ Window {
         player.y = 300;
         newLvl = false
         player.item = 0;
-        // Reset door position
-        door.x = door1X;
-        door.y = door1Y;
         door.visible = false;
         owls.animatedOwl.visible = false;
 
