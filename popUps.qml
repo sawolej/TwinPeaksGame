@@ -77,7 +77,6 @@ Item {
                       }
 
                       onClicked: {
-                          console.log("Button clicked.")
                           move.forceActiveFocus();
                           gameOverDialog.visible = false;
                           player.visible = true;
@@ -137,7 +136,6 @@ Item {
                 }
 
                 onClicked: {
-                    console.log("Button clicked.")
                     move.forceActiveFocus();
                     winDialog.visible = false;
                     player.visible = true;
@@ -191,9 +189,7 @@ Item {
                       }
 
                       onClicked: {
-                          showDialog("t̸̡̮̎̔̀͝h̸̢̦͎̗͋̿e̸̡͉͆ ̶̜̘̾͠ĝ̴̡͎́ų̴̗̳͉̾͝m̷̝͓͐ ̶͕̉̓y̷̺̞̒̕o̷͚͑̉̕ù̶̧̠̚͝ ̶͕̻͈̂͗l̷͇̖̟̂̈́i̸͚̮̥̔̓͌̔k̶̯̓̀ē̶̦͕̜͉̚ ̸͎̒̇̇ỉ̴̩̌̂ś̸̜ ̴̡͇̣̊͋g̵̪̩̔̑o̵͉̯͎̝͊̒i̴̻̖̻͝n̷͚̭͆̍͘͝ġ̵̩͍̉͛͝ ̸̹͛̂͠t̸̪̤̽ó̴̡͍̰ ̸̢̝͝c̴͚̄o̸̱̭͂m̶̡̮̰̑̚ͅé̸̦̲͆ͅ ̴̨̺̦̔b̸͕͎̃̑͊a̶̭͆c̷̹̅̒̍k̷̝̳͌͜ ̸̪͒̐̓í̶̼̊́ͅn̶͖̼͔̊ ̸͎̞̇̂̿̍s̶͎̊̔̎t̵̮̭̗͖̓̌̾y̵̨̛̳̒l̵̮̰̹̣͊͊ȅ̶̼̇̀̿!̴̨̪̩̹̏͝", "MAN")
-
-                          console.log("Button clicked.")
+                          showDialog("Ḯ̵̠̳͔̈͋s̷̞̗̘̝̽͐͆͝ ̵̡̘̠͎̓͊́̇į̵͍͊͊̂ṫ̶̞́̃͑ ̸̧̛͂̎̾ͅͅt̷̯̔ḥ̵̾̒e̷̥̭̩̭͝ ̵̜̇f̸̝̰͝u̵͚̦̞̬̾͊͆t̴̢̢͊̈u̴̧͉͆̄̈͝r̵̠̳͊e̶̢̪̮̿̒ ̵͓̾̐̆͝o̷͎̠̝͊r̷̠͍̘̎̈̉̈́ ̸̼̗̱͗̽͒̍͜i̵͚͖̼͑̀s̴̱͎̆͘ ̷͉̈́̈ḯ̶̤́̾ͅt̸̝̖̀ ̸̦͋̑ţ̷͙͇̳͛͒h̵̢͖̃̆͠͝e̸̓ͅ ̸̦̓̎p̶̺̪̫̑́̇a̸̛̝̋͒͛s̵̳̫̆̍̎t̸̳̝̯̅̇̿̑?̴̪̺̮̓̇̾͜ ̷̡̘̔ͅ", "MIDGET")
                           move.forceActiveFocus();
                           player.visible = true;
                           gumDialog.visible = false;
@@ -217,7 +213,6 @@ Item {
                       }
 
                       onClicked: {
-                          console.log("Button clicked.")
                           move.forceActiveFocus();
                           player.visible = true;
                           gumDialog.visible = false;
@@ -241,7 +236,6 @@ Item {
                       }
 
                       onClicked: {
-                          console.log("Button clicked.")
                           move.forceActiveFocus();
                           player.visible = true;
                           gumDialog.visible = false;

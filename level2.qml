@@ -30,14 +30,14 @@ Rectangle {
         z:3000
     }
 
-    //balls
+    //orbs
 
         Image {
             id: goldBall
             width: 50
             height: 50
-            source: "qrc:/pics/goldBall.png" // Replace with your gold ball image
-            x: 70  // Initial position
+            source: "qrc:/pics/goldBall.png"
+            x: 70
             y: 100
             z: 2000
 
@@ -61,8 +61,8 @@ Rectangle {
             id: redBall
             width: 50
             height: 50
-            source: "qrc:/pics/redBall.png" // Replace with your gold ball image
-            x: 670  // Initial position
+            source: "qrc:/pics/redBall.png"
+            x: 670
             y: 490
             z: 2000
 
@@ -86,8 +86,8 @@ Rectangle {
             id: greenBall
             width: 50
             height: 50
-            source: "qrc:/pics/greenBall.png" // Replace with your gold ball image
-            x: 150  // Initial position
+            source: "qrc:/pics/greenBall.png"
+            x: 150
             y: 490
             z: 2000
 

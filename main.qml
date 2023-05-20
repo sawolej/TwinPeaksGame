@@ -4,27 +4,6 @@ import QtQuick.Window 2.15
 import "."
 import QtMultimedia 6.6
 
-
-/*
-  TODO
-  add barriers to lvl2 OK
-  make pic for lvl2 OK
-  add dialogs for lvl 1 OK
-  remove visabiliti of barriers OK
-  apply shadow for lvl 2 OK
-  add goals in lvl 2 OK
-  add main menu OK
-
-  make orbs in lvl1 OK
-  make door OK
-  make dialog in lvl2 OK
-  move the gum man collider OK
-  add player icon OK
-  animate player icon OK
-  buttons in ending screens
-  add sound
-  */
-
 Window {
     id: window
     visible: true
@@ -60,198 +39,18 @@ Window {
         {x: 600, y: 100, width: 50, height: 70},//giant
         {x: 160, y: 410, width: 50, height: 70},//doppleganger
         {x: 140, y: 180, width: 50, height: 70},//sofe
-         // Add more barriers as needed...
+
      ]
 
 
 //================================================ timer ======================================================
     Timer {
             id: dialogTimer
-            interval: 6000 // Set interval to 4 seconds
-            running: false // Initially, the timer is not running
-            repeat: false  // Do not repeat the timer
-            onTriggered: dialog.visible = false // When the timer is triggered, hide the dialog
+            interval: 6000
+            running: false
+            repeat: false
+            onTriggered: dialog.visible = false
         }
-
-//================================================ funcs ======================================================
-    function showDialog(customText, customTitle) {
-        dialogText.text = customText
-        dialogTitle.text = customTitle
-        dialog.visible = true
-        dialogTimer.start()
-    }
-    function checkCollision(){
-        if(!newLvl){
-                //gum
-                if (player.x === goalX +20 && player.y === goalY) {
-                    collision("gum")
-                }
-                //door
-                else if (player.x === door1X && player.y === door1Y) {
-                    moveToNewLevel();
-                }
-
-                if (collidesWithRectangle(player.x, player.y,50, 50, giantX, giantY, 50, 70)){
-                    collision("giant")
-                } else if (collidesWithRectangle(player.x, player.y,50, 50, doppleX, doppleY, 50, 70)){
-                    collision("dopple")
-                }else if (collidesWithRectangle(player.x, player.y,50, 50, owls.animatedOwl.x, owls.animatedOwl.y, 100, 100)){
-                    if(owls.animatedOwl.visible === true)showDialog("OUCH!", "")
-                }}
-                else{
-                    if (collidesWithRectangle(player.x, player.y,50, 50, 150, 490, 50, 50)){
-                       collision("red")
-                    }
-                    //red baal
-                    else if (collidesWithRectangle(player.x, player.y,50, 50, 670, 490, 50, 50)){
-                        collision("red")
-                    }
-                    //gold baal
-                    else if (collidesWithRectangle(player.x, player.y,50, 50, 70, 100, 50, 50)){
-                        collision("gold")
-                    }
-                }
-    }
-
-    function collision(s){
-        if(s==="gum"){
-                     popups.gumDialog.visible = true;
-            move.focus = false;
-            player.visible = false;
-            console.log("the gum");
-            goldBall2.visible = false;
-        }else if(s==="dopple"){
-            showDialog("t̵͆ͅh̷̭̉í̶̺s̴̭͝ ̴̱̄ḭ̸̽s̴͉͝ ̴̛̼ă̸̰ ̷͚͘d̸̞̄ȓ̸̠ë̸͇́a̷͇̐m̸̼̽.̵͖̓ ̷̛͈b̶̡͘u̵͉͘t̵͖́ ̷̞̌ẘ̵̢h̷̯͐õ̸̧ ̷̟͠i̵̳̊s̸̳̀ ̸̱̄ť̴̻h̶̘̑e̸̝̓ ̶̯͂d̴̥̉r̸͓̂e̴̱̽a̶̗͒m̸͍͘e̴̘̔r̵͕͘?̷̤̽", "DOPPLEGANGER")
-            console.log("doppledopple");
-            owls.animatedOwl.visible = true
-            goldBall1.visible = false;
-        }else if(s==="giant"){
-            console.log("giant")
-            showDialog("Ŷ̷̲̲̀Ŏ̶͚U̷͚͊͘ ̵̗̇̄c̸͖̹̔̅͝͝á̴̮͇̪͖̍͠ň̴̝̝͗ ̸̻͇̦̇̋́g̵̖͙͉̟̈́̌͘ǫ̶̼̬͐͒̇̍ ̴̙̼̥̈́̒͘͠n̷̯͇̫̐͒̄̋o̵͈͕̦̹͋w̶̙̯̫̒̎̉", "GIANT")
-            goldBall3.visible = false;
-            door.visible=true;
-        }else if(s==="red"){
-            console.log("red")
-            popups.gameOverDialog.visible = true;
-            owls.animatedOwl.visible = false;
-            player.visible = false;
-            levelLoader.sourceComponent = null
-        }else if(s==="gold"){
-            console.log("gold")
-            popups.winDialog.visible = true;
-            owls.animatedOwl.visible = false;
-            player.visible = false;
-           levelLoader.sourceComponent = null
-            }
-    }
-
-    function changeDale(s){
-        if (s==="left"){
-            if(player.item===0)player.source= "qrc:/pics/daleLeft.png"
-            else if(player.item===1)player.source= "qrc:/pics/daleCoffeeLeft.png"
-            else if(player.item===2)player.source= "qrc:/pics/daleGunLeft.png"
-        }else if(s==="right"){
-            if(player.item===0)player.source= "qrc:/pics/daleRight.png"
-            else if(player.item===1)player.source= "qrc:/pics/daleCoffeeRight.png"
-            else if(player.item===2)player.source= "qrc:/pics/daleGunRight.png"
-        }else if(s==="up"){
-            player.source= "qrc:/pics/daleBack.png"
-        }else if(s==="down"){
-            if(player.item===0||player.item===2)player.source= "qrc:/pics/daleFront.png"
-            else if(player.item===1)player.source= "qrc:/pics/daleCoffeeFront.png"
-        }
-    }
-
-    function collidesWithBarrier(x, y, width, height) {
-          for (var i = 0; i < barriers.length; i++) {
-              var barrier = barriers[i];
-              if (x < barrier.x + barrier.width &&
-                  x + width > barrier.x &&
-                  y < barrier.y + barrier.height &&
-                  y + height > barrier.y) {
-                  return true;
-              }
-          }
-          return false;
-      }
-    function collidesWithRectangle(playerX, playerY, playerWidth, playerHeight, rectX, rectY, rectWidth, rectHeight) {
-        if (playerX < rectX + rectWidth &&
-            playerX + playerWidth > rectX &&
-            playerY < rectY + rectHeight &&
-            playerY + playerHeight > rectY) {
-            return true;
-        }
-        return false;
-    }
-    function moveToNewLevel() {
-        // Set up the new level
-        showDialog("FIND RIGHT ORB TO GET OUT OF HERE", "")
-        goldBall1.visible = false;
-        goldBall2.visible = false;
-        goldBall3.visible = false;
-
-        // Update the barriers
-        barriers = [
-           {x: 0, y: 0, width: 800, height: 50},
-           {x: 0, y: 0, width: 50, height: 600}, //left up
-           {x: 0, y: 550, width: 800, height: 50}, //left down
-           {x: 750, y: 0, width: 50, height: 600},
-           {x: 300, y: 360, width: 500, height: 20},
-           {x: 300, y: 260, width: 350, height: 20},
-           {x: 220, y: 290, width: 20, height: 500},
-           {x: 300, y: 360, width: 20, height: 50},
-            {x: 300, y: 400, width: 500, height: 20},
-           {x: 600, y: 400, width: 20, height: 100},
-            {x: 300, y: 480, width: 200, height: 20},
-           {x: 500, y: 480, width: 20, height: 100},
-           {x: 300, y: 100, width: 20, height: 170},
-           {x: 430, y: 50, width: 20, height: 150},
-           {x: 550, y: 130, width: 20, height: 150},
-           {x: 110, y: 180, width: 200, height: 20},
-           {x: 110, y: 180, width: 20, height: 400},
-        ];
-        // Set player to new starting position
-        player.x = 400
-        player.y = 300
-        door.visible=false;
-        levelLoader.sourceComponent = Qt.createComponent("level2.qml");
-        owls.animatedOwl.visible = false;
-        newLvl=true;
-    }
-    function restartGame() {
-        // Reset player position
-        player.x = 400;
-        player.y = 300;
-        newLvl = false
-        player.item = 0;
-        door.visible = false;
-        owls.animatedOwl.visible = false;
-
-        // Reset level
-        levelLoader.sourceComponent = null;
-        newLvl = false;
-
-        // Reset dialog visibility
-        dialog.visible = false;
-        popupImagemm.visible = true;
-        goldBall1.visible = true;
-        goldBall2.visible = true;
-        goldBall3.visible = true;
-        // Reset barriers
-        barriers = [
-            {x: 50, y: 30, width: 700, height: 50},
-            {x: 700, y: 30, width: 50, height: 230}, //left up
-            {x: 700, y: 330, width: 50, height: 230}, //left down
-            {x: 50, y: 30, width: 50, height: 500},
-            {x: 50, y: 530, width: 700, height: 50},
-            {x: 400, y: 400, width: 50, height: 50},
-            {x: 320, y: 100, width: 70, height: 70}, //the gum
-            {x: 600, y: 100, width: 50, height: 70},//giant
-            {x: 160, y: 410, width: 50, height: 70},//doppleganger
-            {x: 140, y: 180, width: 50, height: 70},//sofe
-        ];
-    }
-
 
 //================================================ main game area ======================================================
     Item {
@@ -415,11 +214,11 @@ Window {
         //dialog
         Rectangle {
                 id: dialog
-                width: parent.width  // Width same as the parent (Window)
-                height: 100          // Height of the dialog
-                color: "black"        // Color of the dialog
-                anchors.bottom: parent.bottom // Attach the dialog to the bottom of the parent (Window)
-                visible: false       // Initially, the dialog is not visible
+                width: parent.width
+                height: 100
+                color: "black"
+                anchors.bottom: parent.bottom
+                visible: false
                 Text {
                            id: dialogTitle
                            text: ""
@@ -427,13 +226,13 @@ Window {
                            anchors.left: parent.left
                            horizontalAlignment: Text.AlignLeft
                            color: "lightgreen"
-                           font.pixelSize: 16 // Change the size as needed
+                           font.pixelSize: 16
                           // font.bold: true
            }
                 Text {
                     id: dialogText
-                    text: ""          // Initially, the text is empty
-                    anchors.centerIn: parent // Center the text inside the dialog (Rectangle)
+                    text: ""
+                    anchors.centerIn: parent
                     color: "lightgreen"
                      font.pixelSize: 16
 
@@ -489,6 +288,181 @@ Window {
         }
     }
 
+
+
+    //================================================ funcs ======================================================
+        function showDialog(customText, customTitle) {
+            dialogText.text = customText
+            dialogTitle.text = customTitle
+            dialog.visible = true
+            dialogTimer.start()
+        }
+        function checkCollision(){
+            if(!newLvl){
+                    //gum
+                    if (player.x === goalX +20 && player.y === goalY) {
+                        collision("gum")
+                    }
+                    //door
+                    else if (player.x === door1X && player.y === door1Y) {
+                        moveToNewLevel();
+                    }
+
+                    if (collidesWithRectangle(player.x, player.y,50, 50, giantX, giantY, 50, 70)){
+                        collision("giant")
+                    } else if (collidesWithRectangle(player.x, player.y,50, 50, doppleX, doppleY, 50, 70)){
+                        collision("dopple")
+                    }else if (collidesWithRectangle(player.x, player.y,50, 50, owls.animatedOwl.x, owls.animatedOwl.y, 100, 100)){
+                        if(owls.animatedOwl.visible === true)showDialog("OUCH!", "")
+                    }}
+                    else{
+                        if (collidesWithRectangle(player.x, player.y,50, 50, 150, 490, 50, 50)){
+                           collision("red")
+                        }
+                        //red baal
+                        else if (collidesWithRectangle(player.x, player.y,50, 50, 670, 490, 50, 50)){
+                            collision("red")
+                        }
+                        //gold baal
+                        else if (collidesWithRectangle(player.x, player.y,50, 50, 70, 100, 50, 50)){
+                            collision("gold")
+                        }
+                    }
+        }
+
+        function collision(s){
+            if(s==="gum"){
+                         popups.gumDialog.visible = true;
+                move.focus = false;
+                player.visible = false;
+                goldBall2.visible = false;
+            }else if(s==="dopple"){
+                showDialog("t̵͆ͅh̷̭̉í̶̺s̴̭͝ ̴̱̄ḭ̸̽s̴͉͝ ̴̛̼ă̸̰ ̷͚͘d̸̞̄ȓ̸̠ë̸͇́a̷͇̐m̸̼̽.̵͖̓ ̷̛͈b̶̡͘u̵͉͘t̵͖́ ̷̞̌ẘ̵̢h̷̯͐õ̸̧ ̷̟͠i̵̳̊s̸̳̀ ̸̱̄ť̴̻h̶̘̑e̸̝̓ ̶̯͂d̴̥̉r̸͓̂e̴̱̽a̶̗͒m̸͍͘e̴̘̔r̵͕͘?̷̤̽", "DOPPLEGANGER")
+                owls.animatedOwl.visible = true
+                goldBall1.visible = false;
+            }else if(s==="giant"){
+                showDialog("Ŷ̷̲̲̀Ŏ̶͚U̷͚͊͘ ̵̗̇̄c̸͖̹̔̅͝͝á̴̮͇̪͖̍͠ň̴̝̝͗ ̸̻͇̦̇̋́g̵̖͙͉̟̈́̌͘ǫ̶̼̬͐͒̇̍ ̴̙̼̥̈́̒͘͠n̷̯͇̫̐͒̄̋o̵͈͕̦̹͋w̶̙̯̫̒̎̉", "GIANT")
+                goldBall3.visible = false;
+                door.visible=true;
+            }else if(s==="red"){
+                popups.gameOverDialog.visible = true;
+                owls.animatedOwl.visible = false;
+                player.visible = false;
+                levelLoader.sourceComponent = null
+            }else if(s==="gold"){
+                popups.winDialog.visible = true;
+                owls.animatedOwl.visible = false;
+                player.visible = false;
+               levelLoader.sourceComponent = null
+                }
+        }
+
+        function changeDale(s){
+            if (s==="left"){
+                if(player.item===0)player.source= "qrc:/pics/daleLeft.png"
+                else if(player.item===1)player.source= "qrc:/pics/daleCoffeeLeft.png"
+                else if(player.item===2)player.source= "qrc:/pics/daleGunLeft.png"
+            }else if(s==="right"){
+                if(player.item===0)player.source= "qrc:/pics/daleRight.png"
+                else if(player.item===1)player.source= "qrc:/pics/daleCoffeeRight.png"
+                else if(player.item===2)player.source= "qrc:/pics/daleGunRight.png"
+            }else if(s==="up"){
+                player.source= "qrc:/pics/daleBack.png"
+            }else if(s==="down"){
+                if(player.item===0||player.item===2)player.source= "qrc:/pics/daleFront.png"
+                else if(player.item===1)player.source= "qrc:/pics/daleCoffeeFront.png"
+            }
+        }
+
+        function collidesWithBarrier(x, y, width, height) {
+              for (var i = 0; i < barriers.length; i++) {
+                  var barrier = barriers[i];
+                  if (x < barrier.x + barrier.width &&
+                      x + width > barrier.x &&
+                      y < barrier.y + barrier.height &&
+                      y + height > barrier.y) {
+                      return true;
+                  }
+              }
+              return false;
+          }
+        function collidesWithRectangle(playerX, playerY, playerWidth, playerHeight, rectX, rectY, rectWidth, rectHeight) {
+            if (playerX < rectX + rectWidth &&
+                playerX + playerWidth > rectX &&
+                playerY < rectY + rectHeight &&
+                playerY + playerHeight > rectY) {
+                return true;
+            }
+            return false;
+        }
+        function moveToNewLevel() {
+            // set up the new level
+            showDialog("FIND RIGHT ORB TO GET OUT OF HERE", "")
+            goldBall1.visible = false;
+            goldBall2.visible = false;
+            goldBall3.visible = false;
+
+            // update the barriers
+            barriers = [
+               {x: 0, y: 0, width: 800, height: 50},
+               {x: 0, y: 0, width: 50, height: 600}, //left up
+               {x: 0, y: 550, width: 800, height: 50}, //left down
+               {x: 750, y: 0, width: 50, height: 600},
+               {x: 300, y: 360, width: 500, height: 20},
+               {x: 300, y: 260, width: 350, height: 20},
+               {x: 220, y: 290, width: 20, height: 500},
+               {x: 300, y: 360, width: 20, height: 50},
+                {x: 300, y: 400, width: 500, height: 20},
+               {x: 600, y: 400, width: 20, height: 100},
+                {x: 300, y: 480, width: 200, height: 20},
+               {x: 500, y: 480, width: 20, height: 100},
+               {x: 300, y: 100, width: 20, height: 170},
+               {x: 430, y: 50, width: 20, height: 150},
+               {x: 550, y: 130, width: 20, height: 150},
+               {x: 110, y: 180, width: 200, height: 20},
+               {x: 110, y: 180, width: 20, height: 400},
+            ];
+            // set player to new starting position
+            player.x = 400
+            player.y = 300
+            door.visible=false;
+            levelLoader.sourceComponent = Qt.createComponent("level2.qml");
+            owls.animatedOwl.visible = false;
+            newLvl=true;
+        }
+        function restartGame() {
+            // reset player position
+            player.x = 400;
+            player.y = 300;
+            newLvl = false
+            player.item = 0;
+            door.visible = false;
+            owls.animatedOwl.visible = false;
+
+            // reset level
+            levelLoader.sourceComponent = null;
+            newLvl = false;
+
+            // reset dialog visibility
+            dialog.visible = false;
+            popupImagemm.visible = true;
+            goldBall1.visible = true;
+            goldBall2.visible = true;
+            goldBall3.visible = true;
+            // reset barriers
+            barriers = [
+                {x: 50, y: 30, width: 700, height: 50},
+                {x: 700, y: 30, width: 50, height: 230}, //left up
+                {x: 700, y: 330, width: 50, height: 230}, //left down
+                {x: 50, y: 30, width: 50, height: 500},
+                {x: 50, y: 530, width: 700, height: 50},
+                {x: 400, y: 400, width: 50, height: 50},
+                {x: 320, y: 100, width: 70, height: 70}, //the gum
+                {x: 600, y: 100, width: 50, height: 70},//giant
+                {x: 160, y: 410, width: 50, height: 70},//doppleganger
+                {x: 140, y: 180, width: 50, height: 70},//sofe
+            ];
+        }
 
 
 }

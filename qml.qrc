@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>pics/end.png</file>
-        <file>pics/redStone.png</file>
         <file>pics/welcomRoom.png</file>
         <file>level2.qml</file>
         <file>pics/darkness.png</file>
