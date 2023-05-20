@@ -1,10 +1,13 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import "."
+
 
 Rectangle {
 
     property int playerX: 600
     property int playerY: 360
+
 
     id: level2Window
     visible: true
@@ -17,15 +20,15 @@ Rectangle {
         fillMode: Image.PreserveAspectCrop
     }
 //workin light
-//    Image {
-//        width: 4000
-//        height: 2000
-//        id: darkness
-//        source: "qrc:/pics/darkness.png"
-//        x: (player.x+87) - width / 2
-//        y: (player.y+147) - height / 2
-//        z:1002
-//    }
+    Image {
+        width: 4000
+        height: 2000
+        id: darkness
+        source: "qrc:/pics/darkness.png"
+        x: (player.x+87) - width / 2
+        y: (player.y+147) - height / 2
+        z:3000
+    }
 
     //balls
 
@@ -104,5 +107,6 @@ Rectangle {
             }
         }
 
+}
 
-  }
+

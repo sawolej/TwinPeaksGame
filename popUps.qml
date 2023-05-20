@@ -10,11 +10,12 @@ Item {
     y: 300
     property alias gameOverDialog: gameOverDialog
     property alias gumDialog: gumDialog
-    //property alias dialog: dialog
-    property int gum = 0;
+    property alias winDialog: winDialog
+    property int gum: 0
+
     Rectangle {
-              id: gameOverDialog
-              width: 300; height: 450
+              id: mainmenu
+              width: 800; height: 600
               color: "black"
               visible: false
               anchors.centerIn: parent
@@ -24,10 +25,33 @@ Item {
 
               Image {
                   id: popupImage
+                  source: "qrc:/pics/mainmenu.png"
+                  anchors.horizontalCenter: parent.horizontalCenter
+                  height: parent.height - 50
+                  width: parent.width
+                  z:1000
+                  fillMode: Image.PreserveAspectFit
+              }
+
+
+      }
+
+    Rectangle {
+              id: gameOverDialog
+              width: 800; height: 600
+              color: "black"
+              visible: false
+              anchors.centerIn: parent
+              x: (parent.width - width) / 2
+              y: (parent.height - height) / 2
+              z:3000
+
+              Image {
+                  id: popupImagemm
                   source: "qrc:/pics/end.png"
                   anchors.horizontalCenter: parent.horizontalCenter
-                  height: parent.height * 0.68
-                  width: height
+                  height: parent.height - 50
+                  width: parent.width
                   z:1000
                   fillMode: Image.PreserveAspectFit
               }
@@ -38,7 +62,7 @@ Item {
 
                   Button {
                       id: button
-                      text: "Try again"
+                      text: ">Try again"
                       flat: true
 
                       background: Rectangle {
@@ -56,6 +80,8 @@ Item {
                           console.log("Button clicked.")
                           move.forceActiveFocus();
                           gameOverDialog.visible = false;
+                          player.visible = true;
+                          moveToNewLevel();
                       }
                   }
 
@@ -63,6 +89,64 @@ Item {
 
               }
       }
+
+    Rectangle {
+        id: winDialog
+        width: 800; height: 600
+        color: "black"
+        visible: false
+        anchors.centerIn: parent
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 10
+
+            Text {
+                id: winText
+                text: "CONGRATION"
+                color: "lightgreen"
+                font.pixelSize: 24
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Image {
+                id: popupImagewin
+                source: "qrc:/pics/win.png"
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: parent.height * 0.5
+                width: parent.width
+                fillMode: Image.PreserveAspectFit
+            }
+
+            Button {
+                id: buttonwin
+                text: " >MAIN MENU"
+                flat: true
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                background: Rectangle {
+                    color: "transparent"
+                }
+
+                contentItem: Text {
+                    text: buttonwin.text
+                    color: "lightgreen"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                onClicked: {
+                    console.log("Button clicked.")
+                    move.forceActiveFocus();
+                    winDialog.visible = false;
+                    player.visible = true;
+                     restartGame();
+                }
+            }
+        }
+    }
+
 
     Rectangle {
               id: gumDialog
@@ -93,6 +177,7 @@ Item {
                       id: buttonCake
                       text: "Take the Cake"
                       flat: true
+                      anchors.horizontalCenter: parent.horizontalCenter
 
                       background: Rectangle {
                           color: "transparent"
@@ -106,10 +191,13 @@ Item {
                       }
 
                       onClicked: {
+                          showDialog("t̸̡̮̎̔̀͝h̸̢̦͎̗͋̿e̸̡͉͆ ̶̜̘̾͠ĝ̴̡͎́ų̴̗̳͉̾͝m̷̝͓͐ ̶͕̉̓y̷̺̞̒̕o̷͚͑̉̕ù̶̧̠̚͝ ̶͕̻͈̂͗l̷͇̖̟̂̈́i̸͚̮̥̔̓͌̔k̶̯̓̀ē̶̦͕̜͉̚ ̸͎̒̇̇ỉ̴̩̌̂ś̸̜ ̴̡͇̣̊͋g̵̪̩̔̑o̵͉̯͎̝͊̒i̴̻̖̻͝n̷͚̭͆̍͘͝ġ̵̩͍̉͛͝ ̸̹͛̂͠t̸̪̤̽ó̴̡͍̰ ̸̢̝͝c̴͚̄o̸̱̭͂m̶̡̮̰̑̚ͅé̸̦̲͆ͅ ̴̨̺̦̔b̸͕͎̃̑͊a̶̭͆c̷̹̅̒̍k̷̝̳͌͜ ̸̪͒̐̓í̶̼̊́ͅn̶͖̼͔̊ ̸͎̞̇̂̿̍s̶͎̊̔̎t̵̮̭̗͖̓̌̾y̵̨̛̳̒l̵̮̰̹̣͊͊ȅ̶̼̇̀̿!̴̨̪̩̹̏͝", "MAN")
+
                           console.log("Button clicked.")
                           move.forceActiveFocus();
                           player.visible = true;
                           gumDialog.visible = false;
+
                       }
                   }
                   Button {
@@ -133,6 +221,7 @@ Item {
                           move.forceActiveFocus();
                           player.visible = true;
                           gumDialog.visible = false;
+                          player.item = 1;
                       }
                   }
                   Button {
@@ -156,6 +245,7 @@ Item {
                           move.forceActiveFocus();
                           player.visible = true;
                           gumDialog.visible = false;
+                          player.item = 2;
                       }
                   }
 
